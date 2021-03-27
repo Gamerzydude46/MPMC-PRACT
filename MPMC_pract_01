@@ -17,5 +17,8 @@ section	.data
     msg	db	'SUJAY M. KANOLKAR',0xa	;string to be printed
     len	equ	$ - msg			;length of the string
     
-
+Output:-
+$nasm -f elf *.asm; ld -m elf_i386 -s -o demo *.o
+$demo
+SUJAY M. KANOLKAR
   
