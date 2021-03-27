@@ -59,6 +59,13 @@ l1:
     segment .bss
     num resb 1
     
+     
+Result
+
+$nasm -f elf *.asm; ld -m elf_i386 -s -o demo *.o
+$demo
+123456789
+    
     exp 3
     ;N-bit Addition
 section .text
