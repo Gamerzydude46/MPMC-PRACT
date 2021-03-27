@@ -27,31 +27,37 @@ Exp 02
 SYS_WRITE equ 4
 STDOUT equ 1
 
+section    .text
+   global _start                ;must be declared for lusing gcc
+    
+_start:                            ;tells linker entry point
+   mov    ecx,9                   ;ecx = 9
+   mov    eax,'1'                 ;eax = 1
 
-section	.text
-	
-	global _start   ;must be declared for using gcc
+l1:
+    mov[num],eax                ;num loc = 1, num loc = 2
 
-_start:             ;tell linker entry point
-	mov	ecx, 9   
- l1:
-  mov [num],eax 
-  mov eax,SYS_WRITE
-  mov ebx,STDOUT
-  push ecx
-  mov ecx,num
-  mov edx,1
-  int 0x80
-  mov eax,[num]
-  sub eax,'0'
-  inc eax
-  add eax,'0'
-  pop ecx
-  loop l1
-  
-  mov eax,1
-  int 0x80
-  
+    mov eax,SYS_WRITE
+    mov ebx,STDOUT
+    push ecx                    ;tos = 9, tos = 8
+
+    mov ecx,num                 ;ecx = 1, ecx = 2
+    mov edx, 1
+
+    int 0x80                    ;print num=1,print num=2
+
+    mov eax,[num]               ;eax=1,eax=2
+    sub eax,'0'
+    inc eax                     ;eax=2,eax=3
+     add eax,'0'
+    pop ecx                     ;ecx = 9,ecx = 8
+    loop l1                     ;ecx = 8,ecx = 7
+
+    mov eax,1                   ;system call number(sys+exit)
+    int 0x80                    ;call kernal
+
+    segment .bss
+    num resb 1
 
 
   
