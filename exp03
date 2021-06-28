@@ -1,5 +1,6 @@
 exp 03 02
 
+
 ; You may customize this and other start-up templates; 
 ; The location of this template is c:\emu8086\inc\0_com_template.txt
 
@@ -53,10 +54,10 @@ int 21h
 
 mov bl,a    ;compare & jump uisng label (like if else)
 cmp bl,b    
-jmp No02    ;will jump if bl is !> b or will go to next line
+jng No02    ;will jump if bl is !> b or will go to next line
 
 cmp bl,c
-jmp No03   
+jng No03   
 
 mov dl,a
 jmp show
@@ -64,7 +65,7 @@ jmp show
 No02:       ;compare & jump using label  (like if else)
 mov bl,b
 cmp bl,c
-jmp No03   ;will jump if bl !>c or will go to next line
+jng No03   ;will jump if bl !>c or will go to next line
 
 mov dl,a
 jmp show
