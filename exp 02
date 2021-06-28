@@ -9,15 +9,15 @@ org 100h
 .code
 main proc
 
-mov cx,10
-mov dx,48
+mov cx,10  ;setting counter 
+mov dx,48  ;ASCI value of zero 
 
-L1:
-mov ah,2
+L1:        ;label
+mov ah,2   ;display 
 int 21h
-add dx,1
+add dx,1   ;increment (can also use INC instead of ADD)
 
-loop L1
+loop L1    ;loop
 
 mov ah,4ch
 int 21h
@@ -40,17 +40,17 @@ org 100h
 .code
 main proc  
     
-mov al,7
-mov bl,4
-sub al,bl
-add al,48
+mov al,7     ;assiging value to al reg
+mov bl,4     ;assigning value to bl reg
+sub al,bl    ;subtraction logic
+add al,48    ;adding zero   
 
-mov dl,al
-mov ah,2    
+mov dl,al   ;moving al to dl
+mov ah,2    ;display
 int 21h  
 
 main endp
 ret
 
-result
+Result:
 3
