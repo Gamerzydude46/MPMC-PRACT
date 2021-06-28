@@ -1,0 +1,89 @@
+exp 03 02
+
+; You may customize this and other start-up templates; 
+; The location of this template is c:\emu8086\inc\0_com_template.txt
+
+org 100h
+         
+.model small
+.data     
+ msg1 db 10,13,"Enter first No:$"
+ msg2 db 10,13,"Enter second No: $"
+ msg3 db 10,13,"Enter third No:$"  
+ msg4 db 10,13,"Larget No:$"
+ 
+ a db ?
+ b db ?
+ c db ?
+.code
+main proc  
+   
+mov ax,@data  ;to access data section
+mov ds,ax
+
+lea dx,msg1 ; acces n display message 01
+mov ah,9
+int 21h     
+
+mov ah,1    ; input  for 1st no
+int 21h 
+mov a,al    ;moving value to a
+
+lea dx,msg2 ;access n display message 02
+mov ah,9
+int 21h  
+
+mov ah,1    ;input for 2nd N.
+int 21h  
+mov b,al    ;moving vale to b
+
+lea dx,msg3 ;access n display message 03
+mov ah,9
+int 21h
+
+mov ah,1    ;input 3rd No.
+int 21h
+mov c,al    ;moving value to c
+
+lea dx,msg4 ;access mesage 4 n display it
+mov ah,9
+int 21h
+
+
+
+mov bl,a    ;compare & jump uisng label (like if else)
+cmp bl,b    
+jmp No02    ;will jump if bl is !> b or will go to next line
+
+cmp bl,c
+jmp No03   
+
+mov dl,a
+jmp show
+
+No02:       ;compare & jump using label  (like if else)
+mov bl,b
+cmp bl,c
+jmp No03   ;will jump if bl !>c or will go to next line
+
+mov dl,a
+jmp show
+
+No03:
+mov dl,c
+
+
+show:       ;show label for displaying out put
+mov ah,2
+int 21h
+
+
+
+main endp
+ret
+
+Result:
+Enter first No:8
+Enter second No:2
+Enter third No:6  
+Larget No:8
