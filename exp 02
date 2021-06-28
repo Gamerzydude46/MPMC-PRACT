@@ -1,0 +1,56 @@
+exp02_01
+; You may customize this and other start-up templates; 
+; The location of this template is c:\emu8086\inc\0_com_template.txt
+
+org 100h
+
+.model small
+.data
+.code
+main proc
+
+mov cx,10
+mov dx,48
+
+L1:
+mov ah,2
+int 21h
+add dx,1
+
+loop L1
+
+mov ah,4ch
+int 21h
+
+main endp
+
+ret
+
+Result:
+0123456789
+
+exp02_03
+; You may customize this and other start-up templates; 
+; The location of this template is c:\emu8086\inc\0_com_template.txt
+
+org 100h
+         
+.model small
+.data
+.code
+main proc  
+    
+mov al,7
+mov bl,4
+sub al,bl
+add al,48
+
+mov dl,al
+mov ah,2    
+int 21h  
+
+main endp
+ret
+
+result
+3
